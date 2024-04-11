@@ -13,10 +13,13 @@ function Header() {
     return (
 <Navbar expand={showCollapseIconOnScreenSize} className="primary">
     <Container>
-        <Navbar.Brand href="#"><img src="images/nav-logo.png" className="logo" alt="Nick's Hotels"/></Navbar.Brand>
+        <Navbar.Brand href="#" style={{color: "white", fontWeight: "bold"}}>
+            <img src="images/nav-logo.png" className="logo" alt="Nick's Hotels"/>
+            Nick's Hotels
+            </Navbar.Brand>
         <ToggleIcon className={`icon d-${showCollapseIconOnScreenSize}-none`} onClick={() => setIsCollapsedMenuOpen(!isCollapsedMenuOpen)}/>
         <Navbar.Collapse className={`collapse navbar-collapse ${isCollapsedMenuOpen ? 'show' : ''}`} id="basic-navbar-nav">
-            <Nav variant="underline" defaultActiveKey="/home" className="justify-content-center">
+            <Nav variant="underline" defaultActiveKey="/home">
                 <Nav.Link href="/home">Hotels</Nav.Link>
                 <Nav.Link href="/transportation">Transportation</Nav.Link>
                 <Nav.Link href="/events">Events</Nav.Link>

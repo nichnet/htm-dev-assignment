@@ -1,0 +1,18 @@
+.pagination {
+    justify-content: center;
+    font-weight: bold;
+}
+
+.pagination-link {
+    margin: 0 24px;
+    border: 0;
+    cursor: pointer; 
+}
+
+.disabled {
+    visibility: hidden;
+}
+
+.enabled {
+    color: var(--primary-color);
+}

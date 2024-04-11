@@ -1,26 +1,28 @@
 import { useEffect, useState } from "react";
 
-import './FilterRange.css';
+import './Filter.css';
 
-function FilterRange({id, min=0, max=1, label, defaultState=false, valueChangedCallback}) {
+function FilterRange({min=0, max=1, label, defaultState=false, valueChangedCallback}) {
 
     const [isChecked, setIsChecked] = useState(true);
     const [rangeValue, setRangeValue] = useState(max);
 
     useEffect(() => {
-        if(defaultState == true) {
-            setIsChecked(defaultState);
-        }
+        setIsChecked(defaultState);
     }, []);
+
+    useEffect(() => {
+        setRangeValue(max);
+    }, [max]);
 
     useEffect(() => {
         if(valueChangedCallback) {
             valueChangedCallback(isChecked ? rangeValue : null);   
         }
-    }, [isChecked, rangeValue])
+    }, [isChecked, rangeValue]);
 
     return(
-        <div className="filter-range">
+        <div className="filter">
             <label>
                 <input type="checkbox" checked={isChecked} onChange={() => setIsChecked(!isChecked)}/>
                 <span>{label} ({rangeValue})</span>

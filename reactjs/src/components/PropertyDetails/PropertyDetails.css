@@ -1,0 +1,11 @@
+.property-details p {
+    margin: 0;
+}
+
+.property-detailsc .info svg {
+    margin-left:2px;
+}
+
+.property-details .info span {
+    margin-right:12px;
+}

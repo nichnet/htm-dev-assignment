@@ -1,0 +1,14 @@
+.filter {
+    margin-bottom: 12px;
+}
+.filter *:not(input[type="checkbox"]) {
+    width: 100%;
+}
+
+.filter input[type="range"] {
+    padding: 0;
+}
+
+.filter label span {
+    margin-left: 6px;
+}

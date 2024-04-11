@@ -1,23 +1,14 @@
-.property-card {
+.property-card img {
+    height: 150px; 
+    width: 100%;
+    object-fit: cover; 
 }
 
-.property-card img {
-  height: 150px; 
-  width: 100%;
-  object-fit: cover; 
-}
 .property-card p {
-    margin: 0;
+    margin: 0 !important;
 }
 
 .property-card:not(last-child) {
     margin-bottom: 12px;
 }
 
-.property-card .details svg {
-    margin-left:2px;
-}
-
-.property-card .details span {
-    margin-right:12px;
-}
