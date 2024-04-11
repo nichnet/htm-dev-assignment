@@ -5,7 +5,7 @@ import {Container} from 'react-bootstrap';
 
 function App() {
   return (
-    <div>
+    <div className="d-flex flex-column min-vh-100">
       <Header/>
       <Container className="page">
         <HomePage/>

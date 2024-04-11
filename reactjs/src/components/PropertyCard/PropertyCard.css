@@ -1,11 +1,10 @@
 .property-card {
-    border: 0;
 }
 
 .property-card img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+  height: 150px; 
+  width: 100%;
+  object-fit: cover; 
 }
 .property-card p {
     margin: 0;

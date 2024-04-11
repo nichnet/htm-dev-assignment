@@ -1,8 +1,7 @@
 :root {
   --primary-color: #369cd7; 
-  --text-color: #C0B3A9;
+  --text-color: #757575;
 }
-
 
 body {
   background-color: #FEFEFE;
@@ -15,16 +14,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.button, .btn-primary {
-  border-color: var(--primary-color);
-  background-color:  var(--primary-color);
-}
-
-.spinner {
-  background-color: transparent;
-}
-.spinner span {
-  color: var(--primary-color) !important;
+.primary {
+  background-color: var(--primary-color);
 }
 
 .box {
@@ -51,10 +42,18 @@ body {
   padding: 12px;
 }
 
-.primary {
-  background-color: var(--primary-color);
+.large-label {
+  font-size: 1.3em;
+  font-weight: 600;
+  margin: 8px 0;
 }
 
+
+/* Buttons & Icons */
+.button, .btn-primary {
+  border-color: var(--primary-color);
+  background-color:  var(--primary-color);
+}
 
 .icon {
   color: white;
@@ -63,21 +62,22 @@ body {
   height: 40px;
 }
 
-.icon:hover {
-  cursor: pointer;
-  filter: brightness(1.05);
+.icon:hover, .button:hover, .btn-primary:hover {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+  cursor: pointer !important;
+  filter: brightness(1.05) !important;
 }
 
-.icon:active {
+.icon:active, .button:active, .btn-primary:active {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
   filter: brightness(0.9);
 }
 
-.large-label {
-  font-size: 1.3em;
-  font-weight: 600;
-  margin: 8px 0;
-}
 
+
+/* Scroll to Top (Library) */
 .scroll-to-top {
   box-shadow: 0px 2px 8px #00000030 !important;
   background-color: var(--primary-color) !important;
@@ -90,12 +90,13 @@ body {
   height: 32px;
 }
 
+
+/* Input */
 input[type="range"] {
   background-color: var(--primary-color);
   border-radius: 12px;
   padding:12px;
 }
-
 
 input[type=range]:disabled {
   background-color: #0000001e;
