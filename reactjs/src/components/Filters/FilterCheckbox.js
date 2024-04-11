@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 
 import './Filter.css';
 
-function FilterCheckbox({label, defaultState=false, valueChangedCallback}) {
+function FilterCheckbox({label, defaultValue, valueChangedCallback}) {
 
-    const [isChecked, setIsChecked] = useState(true);
+    const [isChecked, setIsChecked] = useState(defaultValue ?? false);
 
-    useEffect(() => {
-        setIsChecked(defaultState);
+    useEffect(()=>{
+        console.log(isChecked, defaultValue);
     }, []);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ function FilterCheckbox({label, defaultState=false, valueChangedCallback}) {
     return(
         <div className="filter">
             <label>
-                <input type="checkbox" checked={isChecked} onChange={() => setIsChecked(!isChecked)}/>
+                <input type="checkbox" defaultChecked={isChecked} onChange={() => setIsChecked(!isChecked)}/>
                 <span>{label}</span>
             </label>
         </div>

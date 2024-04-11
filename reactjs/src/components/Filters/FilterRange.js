@@ -1,34 +1,41 @@
 import { useEffect, useState } from "react";
+import Slider from "rc-slider";
+import 'rc-slider/assets/index.css';
 
 import './Filter.css';
 
-function FilterRange({min=0, max=1, label, defaultState=false, valueChangedCallback}) {
+function FilterRange({clampedRange, defaultValue, label,valueChangedCallback}) {
 
-    const [isChecked, setIsChecked] = useState(true);
-    const [rangeValue, setRangeValue] = useState(max);
-
-    useEffect(() => {
-        setIsChecked(defaultState);
-    }, []);
+    const [isChecked, setIsChecked] = useState(defaultValue  ? true : false);
+    const [currentRangeValue, setCurrentRangeValue] = useState(defaultValue ?? clampedRange ?? [1, 1]); 
 
     useEffect(() => {
-        setRangeValue(max);
-    }, [max]);
+        if(clampedRange) {
+            setCurrentRangeValue(clampedRange);
+        }
+    }, [clampedRange]);
 
+    useEffect(() => {
+        setIsChecked(defaultValue ? true : false);
+        if(defaultValue) {
+            setCurrentRangeValue(defaultValue);
+        }
+    }, [defaultValue]);
+    
     useEffect(() => {
         if(valueChangedCallback) {
-            valueChangedCallback(isChecked ? rangeValue : null);   
+            valueChangedCallback(isChecked ? currentRangeValue : null);   
         }
-    }, [isChecked, rangeValue]);
+    }, [isChecked, currentRangeValue]);
 
     return(
         <div className="filter">
             <label>
                 <input type="checkbox" checked={isChecked} onChange={() => setIsChecked(!isChecked)}/>
-                <span>{label} ({rangeValue})</span>
-                <br/>
-                <input type="range" disabled={!isChecked} min={min} max={max} value={rangeValue} onChange={e => setRangeValue(e.target.value)}/>
+                <span>({`${label} ${currentRangeValue?.[0]} - ${currentRangeValue?.[1]}`})</span>
             </label>
+            <br/>
+            <Slider range dotStyle={{backgroundColor: "red"}} style={{marginTop: "6px"}} steps={1} disabled={!isChecked} min={clampedRange[0]} max={clampedRange[1]} defaultValue={defaultValue ?? clampedRange} onChange={(range) => setCurrentRangeValue(range)}/>
         </div>
     );
 }

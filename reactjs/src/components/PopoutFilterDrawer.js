@@ -1,14 +1,14 @@
 import { Offcanvas } from 'react-bootstrap';
 import PropertySearchFilter from './Filters/PropertySearchFilter/PropertySearchFilter';
 
-function PopoutFilterDrawer({show, maximums, onFiltersAppliedCallback, closeDrawerCallback}) {
+function PopoutFilterDrawer({show, ranges, defaultAppliedRanges, onFiltersAppliedCallback, performSearchCallback, closeDrawerCallback}) {
     return (
         <Offcanvas show={show} onHide={closeDrawerCallback} placement="start">
             <Offcanvas.Header closeButton>
-                <Offcanvas.Title>Drawer</Offcanvas.Title>
+                <Offcanvas.Title>Filter</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-                <PropertySearchFilter maximums={maximums} onFiltersAppliedCallback={(val) => { onFiltersAppliedCallback(val); closeDrawerCallback()}}/>
+                <PropertySearchFilter ranges={ranges} defaultAppliedRanges={defaultAppliedRanges} onFiltersAppliedCallback={(val) => onFiltersAppliedCallback(val)} performSearchCallback={() => {performSearchCallback(); closeDrawerCallback();}}/>
             </Offcanvas.Body>
         </Offcanvas>
     );

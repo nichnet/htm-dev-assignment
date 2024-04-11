@@ -112,7 +112,9 @@ function ViewPropertyDetailsModal({propertyId, show, onCloseCallback}) {
                 </Modal.Header>
                 {
                     isLoadingData ?
-                    <Spinner style={{marginTop: "24px"}} message="Fetching Property Details..."/>
+                    <div style={{marginTop: "24px"}} >
+                    <Spinner message="Fetching Property Details..."/>
+                    </div>
                     : 
                     propertyData ? 
                     <>

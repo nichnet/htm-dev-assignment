@@ -4,10 +4,11 @@ import FilterRange from "../FilterRange";
 import './PropertySearchFilter.css';
 import { useEffect, useState } from 'react';
 import FilterCheckbox from '../FilterCheckbox';
+import Spinner from '../../Spinner';
 
-function PropertySearchFilter({maximums, onFiltersAppliedCallback}) {
+function PropertySearchFilter({ranges, defaultAppliedRanges, onFiltersAppliedCallback, performSearchCallback}) {
 
-    const [appliedFilters, setAppliedFilters] = useState({});
+    const [appliedFilters, setAppliedFilters] = useState(defaultAppliedRanges ?? ranges);
 
     const onFilterValueChanged = (key, value) => {
         setAppliedFilters(prevAppliedFilters => {
@@ -26,16 +27,29 @@ function PropertySearchFilter({maximums, onFiltersAppliedCallback}) {
         );
     }
 
+    useEffect(() => {
+        if(onFiltersAppliedCallback) {
+            onFiltersAppliedCallback(appliedFilters);
+        }
+    }, [appliedFilters]);
+
     return (
         <form>
             <div style={{width: "100%"}}>
-                <FilterRange min={1} max={maximums?.max_rooms ?? 1} label="Rooms" defaultState={true} valueChangedCallback={(val) => onFilterValueChanged("max_rooms", val)}/>
-                <FilterRange min={1} max={maximums?.max_beds ?? 1} label="Beds" valueChangedCallback={(val) => onFilterValueChanged("max_beds", val)}/>
-                <FilterRange min={1} max={maximums?.max_bathrooms ?? 1} label="Bathrooms" valueChangedCallback={(val) => onFilterValueChanged("max_bathrooms", val)}/>
-                <FilterRange min={1} max={maximums?.max_floorarea ?? 1} label="Floor Area (sqm)" valueChangedCallback={(val) => onFilterValueChanged("max_floorarea", val)}/>
-                <FilterCheckbox label="Upgraded Amenities" valueChangedCallback={(val) => onFilterValueChanged("upgraded_amenities", val)}/>
+                {
+                    !ranges ?
+                    <Spinner/>
+                    :
+                    <>
+                        <FilterRange clampedRange={ranges.rooms} defaultValue={defaultAppliedRanges?.rooms} label="Rooms" valueChangedCallback={(val) => onFilterValueChanged("rooms", val)}/>
+                        <FilterRange clampedRange={ranges.beds} defaultValue={defaultAppliedRanges?.beds} label="Beds" valueChangedCallback={(val) => onFilterValueChanged("beds", val)}/>
+                        <FilterRange clampedRange={ranges.bathrooms} defaultValue={defaultAppliedRanges?.bathrooms} label="Bathrooms" valueChangedCallback={(val) => onFilterValueChanged("bathrooms", val)}/>
+                        <FilterRange clampedRange={ranges.floorarea} defaultValue={defaultAppliedRanges?.floorarea} label="Floor Area (sqm)" valueChangedCallback={(val) => onFilterValueChanged("floorarea", val)}/>
+                        <FilterCheckbox label="Upgraded Facilities" defaultValue={defaultAppliedRanges?.upgraded_facilities} valueChangedCallback={(val) => onFilterValueChanged("upgraded_facilities", val)}/>
+                    </>                    
+                }
             </div>
-            <Button onClick={() => onFiltersAppliedCallback(appliedFilters)}>Apply Filter</Button>
+            <Button onClick={performSearchCallback}>Apply Filters</Button>
         </form>
     );
 }
