@@ -1,5 +1,5 @@
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import Footer from "./components/Nav/Footer";
+import Header from "./components/Nav/Header";
 import HomePage from "./pages/HomePage";
 import {Container} from 'react-bootstrap';
 

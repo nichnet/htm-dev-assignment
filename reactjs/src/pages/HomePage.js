@@ -1,32 +1,47 @@
+import { chooseRandomFromArray, userSearchPrompts } from '../utils/constants';
 import { useEffect, useState } from 'react';
 import {HashLoader} from 'react-spinners';
-import { Row, Col, Button, Offcanvas } from 'react-bootstrap';
-import PropertySearchFilter from '../components/Filter/PropertySearchFilter';
+import { Row, Col } from 'react-bootstrap';
+import PropertySearchFilter from '../components/Filter/PropertySerachFilter/PropertySearchFilter';
 import PropertyCard from '../components/PropertyCard/PropertyCard';
+import ScrollToTop from "react-scroll-to-top";
+import { 
+    MdTune as FilterIcon, 
+    MdMap as MapIcon, 
+    MdExpandLess as UpArrowIcon 
+} from 'react-icons/md';
+
+import './HomePage.css';
+import PopoutFilterDrawer from '../components/Filter/PopoutFilterDrawer';
+
 function HomePage() {
 
     const [showDrawer, setShowDrawer] = useState(false);
+    const [loadingData, setLoadingData] = useState(false);
     const [propertiesData, setPropertiesData] = useState(null);
 
     useEffect(() => {
-        fetch('/data/properties.json')
-        .then(response => {
-            if(!response.ok) {
-                throw new Error('Network Response Error, not ok.');
-            }
+        setLoadingData(true);
 
-            return response.json();
-        })
-        .then(json => {
-            // Simulate loading time.
-            setTimeout(() => {
-                setPropertiesData(json);
-            }, 1000);
-        })
-        .catch(err => {
-            //TODO show error modal.
-            console.log("error:", err);
-        })
+        fetch('/data/properties.json')
+            .then(response => {
+                if(!response.ok) {
+                    throw new Error('Network Response Error, not ok.');
+                }
+
+                return response.json();
+            })
+            .then(json => {
+                // Simulate loading time.
+                setTimeout(() => {
+                    setPropertiesData(json);
+                    setLoadingData(false);
+                }, 2300);
+            })
+            .catch(err => {
+                //TODO show error modal.
+                console.log("error:", err);
+            })
     }, []);
 
     const buildFilteredResults = () => {
@@ -36,38 +51,50 @@ function HomePage() {
     };
 
     return (
-        <>
-            <Row>
-                <Col xs={0} md={4} lg={3} className="box shadow rounded d-none d-md-block">
-                    <PropertySearchFilter/>
+        <Col className="px-2 px-sm-0">
+            <ScrollToTop smooth component={<UpArrowIcon/>}/>
+            <Row className="px-0 align-items-center">
+                <MapIcon className="icon border rounded primary"/>
+                <Col className="px-3  ps-md-3 pe-md-0">
+                    <input className="search rounded shadow" type="text" placeholder="Search for hundreds of properties..." />
                 </Col>
-                <Col xs={12} md={8} lg={9}>
-                    <Button className="d-none d-md-block" onClick={() => setShowDrawer(!showDrawer)}>Filter Results</Button>
-                    <p>{propertiesData ? `${propertiesData.length} Properties Found` : null}</p>
-                    <div>
+                <FilterIcon className="icon border rounded primary d-block d-md-none" onClick={() => setShowDrawer(!showDrawer)}/>
+            </Row>
 
+            <Row>
+                <Col className="px-0" xs={12} md={{span:8, offset:4}} lg={{span:9, offset:3}}>
+                    <p className="large-label">{loadingData ? "Searching..."  : `${propertiesData?.length ?? 0} Properties Found`}</p>
+                </Col>
+            </Row>
+            <Row>
+               <Col xs={0} md={4} lg={3} className="d-none d-md-block">
+                    <Row className="me-1 box shadow rounded">
+                        <PropertySearchFilter />
+                    </Row>
+                </Col>
+                <Col xs={12} md={8} lg={9} className="p-0" style={{minHeight:"400px"}}>
                     {!propertiesData ? 
-                        <center>
-                            <HashLoader color="#36d7b7" />
-                        </center>
+                        <div style={{display: "flex", justifyContent:"center", alignItems:"center", minHeight: "100%"}}>
+                            <center>
+                                <HashLoader color="#369cd7"/>
+                                <p style={{marginTop: "36px"}}>{chooseRandomFromArray(userSearchPrompts)}</p>
+                            </center>
+                        </div>
                         :
                         <div>
                             {buildFilteredResults()}
+                            <div>
+                                <a href="#">Prev</a>
+                                <p>1 of 2</p>
+                                <a href="#">Next</a>
+                            </div>
                         </div>
                     }
-                    </div>
                 </Col>
             </Row>
 
-            <Offcanvas show={showDrawer} onHide={() => setShowDrawer(false)} placement="start">
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Drawer</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                    <PropertySearchFilter/>
-                </Offcanvas.Body>
-            </Offcanvas>
-        </>
+            <PopoutFilterDrawer show={showDrawer} closeDrawerCallback={() => setShowDrawer(false)}/>
+        </Col>
     );
 }
 

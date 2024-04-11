@@ -1,0 +1,13 @@
+.logo {
+    height: 36px;
+}
+
+.nav-link {
+    color:white;
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    color: white;
+    filter: brightness(0.9);
+}
