@@ -1,0 +1,24 @@
+.property-card {
+    border: 0;
+}
+
+.property-card img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.property-card p {
+    margin: 0;
+}
+
+.property-card:not(last-child) {
+    margin-bottom: 12px;
+}
+
+.property-card .details svg {
+    margin-left:2px;
+}
+
+.property-card .details span {
+    margin-right:12px;
+}
