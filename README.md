@@ -1,7 +1,10 @@
 # HSM Dev Assignment
-![Desktop Browser](https://github.com/nichnet/hsm-dev-assignment/blob/main/images/desktop.png)
-![Mobile Browser](https://github.com/nichnet/hsm-dev-assignment/blob/main/images/mobile.png)
 
+<img src="https://github.com/nichnet/hsm-dev-assignment/blob/main/images/desktop.png" alt="Desktop Broser">
+
+<img src="https://github.com/nichnet/hsm-dev-assignment/blob/main/images/tablet.png" alt="Tablet Browser" width="300" >
+
+<img src="https://github.com/nichnet/hsm-dev-assignment/blob/main/images/mobile.png" alt="Mobile Browser" width="200">
 
 ### Requirements:
 1. **Node.js**: Ensure Node.js is installed on your system. You can download it from [nodejs.org](https://nodejs.org/).
