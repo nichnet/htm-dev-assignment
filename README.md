@@ -1,10 +1,10 @@
-# HSM Dev Assignment
+# HTM Dev Assignment
 
-<img src="https://github.com/nichnet/hsm-dev-assignment/blob/main/images/desktop.png" alt="Desktop Broser">
+<img src="https://github.com/nichnet/htm-dev-assignment/blob/main/images/desktop.png" alt="Desktop Broser">
 
 <div style="display: flex;">
-    <img src="https://github.com/nichnet/hsm-dev-assignment/blob/main/images/tablet.png" alt="Tablet Browser" width="300"/>
-    <img src="https://github.com/nichnet/hsm-dev-assignment/blob/main/images/mobile.png" alt="Mobile Browser" width="200"/>
+    <img src="https://github.com/nichnet/htm-dev-assignment/blob/main/images/tablet.png" alt="Tablet Browser" width="300"/>
+    <img src="https://github.com/nichnet/htm-dev-assignment/blob/main/images/mobile.png" alt="Mobile Browser" width="200"/>
 </div>
 
 ### Requirements:
@@ -14,7 +14,7 @@
 ### Setup Instructions:
 1. **Clone the Repository**: Clone the repository to your local machine using the following command:
     ```bash
-    git clone https://github.com/nichnet/hsm-dev-assignment.git
+    git clone https://github.com/nichnet/htm-dev-assignment.git
     ```
 2. **Install Dependencies**: Navigate to the project directory and move into the `reactjs` directory. Run the following command to install the necessary dependencies:
     ```bash
@@ -33,4 +33,4 @@
 
 ## Hosting Architecture
 I am hosting the demo on AWS. An ideal architecture diagram would be as follows:
-![AWS Architecture](https://github.com/nichnet/hsm-dev-assignment/blob/main/images/architecture.png)
+![AWS Architecture](https://github.com/nichnet/htm-dev-assignment/blob/main/images/architecture.png)
