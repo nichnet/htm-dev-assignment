@@ -8,20 +8,6 @@ function FilterRange({clampedRange, defaultValue, label,valueChangedCallback}) {
 
     const [isChecked, setIsChecked] = useState(defaultValue  ? true : false);
     const [currentRangeValue, setCurrentRangeValue] = useState(defaultValue ?? clampedRange ?? [1, 1]); 
-/*
-    useEffect(() => {
-        if(clampedRange) {
-            setCurrentRangeValue(clampedRange);
-        }
-    }, [clampedRange]);
-
-    useEffect(() => {
-        setIsChecked(defaultValue ? true : false);
-        if(defaultValue) {
-            setCurrentRangeValue(defaultValue);
-        }
-    }, [defaultValue]);
-    */
 
     useEffect(() => {
         if(valueChangedCallback) {
