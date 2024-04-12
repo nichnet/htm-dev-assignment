@@ -3,11 +3,10 @@
   --text-color: #757575;
 }
 
-html {
-  overflow-y:scroll;
-}
 
 body {
+  overflow: -moz-scrollbars-vertical; 
+  overflow-y:scroll;
   background-color: #FEFEFE;
   color:var(--text-color);
   margin: 0;
