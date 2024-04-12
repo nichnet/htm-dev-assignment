@@ -1,7 +1,6 @@
 # HSM Dev Assignment
-![Desktop Browser](https://github.com/nichnet/hsm-dev-assignment/blob/main/images/desktop.gif)
-
-![Mobile Browser](https://github.com/nichnet/hsm-dev-assignment/blob/main/images/mobile.gif)
+![Desktop Browser](https://github.com/nichnet/hsm-dev-assignment/blob/main/images/desktop.png)
+![Mobile Browser](https://github.com/nichnet/hsm-dev-assignment/blob/main/images/mobile.png)
 
 
 ### Requirements:
@@ -25,7 +24,8 @@
 
 ### Additional Notes:
 - For production builds, you can use `npm run build` to create an optimized production build.
-
+- Navbar Links and Map button are mocks.
+- Webpage has search filters, pagination, and resposnsive design for large, medium and small devices.
 
 ## Hosting Architecture
 I am hosting the demo on AWS. An ideal architecture diagram would be as follows:
