@@ -37,6 +37,8 @@ function HomePage() {
     const [showDrawer, setShowDrawer] = useState(false);
     const [isLoadingData, setIsLoadingData] = useState(true);
 
+    const [userSearchPromptMessage, setUserSearchPromptMessage] = useState(chooseRandomFromArray(userSearchPrompts));
+
     const [selectedPropertyId, setSelectedPropertyId] = useState(null);
     const [propertiesData, setPropertiesData] = useState(null);
 
@@ -183,6 +185,9 @@ function HomePage() {
     }, [currentPage]);
 
     const performSearchQuery = () => {
+        //get a new search prompt       
+        setUserSearchPromptMessage(chooseRandomFromArray(userSearchPrompts));
+ 
         setURLFilters();
         setIsLoadingData(true);
        
@@ -275,7 +280,7 @@ function HomePage() {
                         {
                             isLoadingData ? 
                             <div style={{display: "flex", justifyContent:"center", alignItems:"center", minHeight: "100%"}}>
-                                <Spinner message={chooseRandomFromArray(userSearchPrompts)}/>
+                                <Spinner message={userSearchPromptMessage}/>
                             </div>
                             :
                             propertiesData.length > 0 ?
